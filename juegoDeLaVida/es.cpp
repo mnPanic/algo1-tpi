@@ -2,7 +2,7 @@
 #include "definiciones.h"
 #include <fstream>
 
-namespace std
+using namespace std;
 
 /* Formato del archivo
  * 1. Cantidad de filas (cantidadFilas).
