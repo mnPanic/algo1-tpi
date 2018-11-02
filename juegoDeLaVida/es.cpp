@@ -113,6 +113,20 @@ private bool esFormatoValido(String nombreArchivo) {
 
 
 /******************************** EJERCICIO escribirToroide *****************************/
+/**
+ * Dado un nombre de archivo nombreArchivo y un toroide t, almacene el toroide
+ * en el archivo indicado respetando el formato descripto.
+ *
+ * El valor de retorno indica si la operación se pudo realizar exitosamente o no.
+ *
+ * Los motivos por los que devuelve false (no exitoso) son:
+ *   - No se pudo abrir el archivo para escritura (sin permisos, path inexistente, etc).
+ *   - No se pudo escribir el toroide completo (sin espacio en disco, etc).
+ *
+ * @param nombreArchivo El nombre del archivo.
+ * @param t El toroide a guardar.
+ * @return Si la operación fue exitosa.
+ */
 bool escribirToroide(string nombreArchivo, toroide &t)
 {
 	bool res;
