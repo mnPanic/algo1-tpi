@@ -113,6 +113,22 @@ private bool esFormatoValido(String nombreArchivo) {
 
 
 /******************************** EJERCICIO escribirToroide *****************************/
+
+
+int filas(toroide t) {
+    return t.size();
+}
+
+int columnas(toroide t) {
+    int columnas = 0;
+
+    if (!t.empty()) {
+        columnas = t[0].size();
+    }
+
+    return columnas;
+}
+
 /**
  * Dado un nombre de archivo nombreArchivo y un toroide t, almacene el toroide
  * en el archivo indicado respetando el formato descripto.
@@ -127,8 +143,37 @@ private bool esFormatoValido(String nombreArchivo) {
  * @param t El toroide a guardar.
  * @return Si la operación fue exitosa.
  */
-bool escribirToroide(string nombreArchivo, toroide &t)
-{
-	bool res;
-	return res;
+bool escribirToroide(string nombreArchivo, toroide &t) {
+	ofstream fout(nombreArchivo);
+
+	int fil = filas(t);
+	int col = columnas(t);
+
+	int vivas = 0;
+	int valor = 0;
+
+	// Escribo las filas y columnas
+	fout << fil << " " << col << endl;
+
+	// Escribo el toroide
+	for(int i = 0; i < fil && !fout.fail(); i++){
+	    for(int j = 0; j < col && !fout.fail(); j++) {
+            valor = 0;
+            if (t[i][j]) {
+                valor = 1;
+                vivas++;
+            }
+
+            // Solo agrego un espacio antes del valor cuando no es el primer elemento de la columna
+            if (j != 0) fout << " ";
+            fout << valor;
+        }
+
+	    fout << endl;
+	}
+
+	// Escribo la cantidad de posiciones vivas
+	fout << vivas;
+
+	return !fout.fail();
 }
