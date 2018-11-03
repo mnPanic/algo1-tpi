@@ -45,53 +45,45 @@ toroide cargarToroide(string nombreArchivo, bool &status) {
 private bool esArchivoValido(String nombreArchivo) {
 	ifstream fin(nombreArchivo);
 
-	return fin.fail()
+	return !fin.fail();
 }
 
-
-/*
+/**
+ * Chequea que un archivo que contiene un toroide tenga el formato válido:
+ *   - Los primeros dos elementos del archivo indican cantidadFilas y cantidadColumnas.
+ *   - Hay exactamente cantidadFilas x cantidadColumnas elementos en el toroide.
+ *   - Todos los elementos del toroide son 0 o 1.
+ *   - El ultimo elememento denota la cantidad de posiciones vivas, y hay exactamente esa cantidad de posiciones vivas.
  *
-5 4
-
- 1 1
- 1 0
- 1 0
- 0 0
- 0 0
- 0 0
- 0 0
- 0 0
- 0 0
-
-1 0 0 0
-0 0 1 0
-0 0 0 1
-0 1 0 0
-0 0 0 0
-4
+ * NO importa la dimensión que tenga el toroide del archivo, solo que cumpla los puntos anteriores.
+ *
+ * Formato:
+ * 	[cantidadFilas] [cantidadColumnas]
+ * 	[toroide]
+ * 	[cantidadVivas]
  */
-
-// supone que es un archivo válido
 private bool esFormatoValido(String nombreArchivo) {
 	bool valido = true;
 
 	ifstream fin(nombreArchivo);
 
-	int filasEsperadas = 0;
-	int columnasEsperadas = 0;
-	int cantVivasEsperadas = -1;	// comienza en -1...
+	int cantidadFilas = 0;
+	int cantidadColumnas = 0;
 
-	fin >> filasEsperadas;
-	fin >> columnasEsperadas;
+	// Comienza en -1 para que si el archivo no contiene la cantidadVivas,
+	// y el toroide no tiene ninguna viva, no lo tomemos como válido.
+	int cantidadVivas = -1;
 
-	int filas = 0;
-	int columnas = 0;
+	fin >> cantidadFilas;
+	fin >> cantidadColumnas;
+
+	int cantidadElementos = cantidadFilas * cantidadColumnas;
+
 	int vivas = 0;
-
 	int valor = 0;
+    int elem = 0;
 
-	for (int i = 0; i < filasEsperadas * columnasEsperadas && !fin.eof(); i ++) {
-		// problema: no diferenciamos entre dimensiones para misma cantidad de elementos
+	while (elem < cantidadElementos && valido && !fin.eof()) {
 		fin >> valor;
 
 		if (valor == 1 || valor == 0) {
@@ -99,16 +91,20 @@ private bool esFormatoValido(String nombreArchivo) {
 		} else {
 			valido = false;
 		}
+
+		elem ++;
 	}
 
 	if (!fin.eof()) {
-		fin >> cantVivasEsperadas;
-		// deberñia ser true fin.eof()
+		fin >> cantidadVivas;
 	}
 
-	// falta chequear que cantVivasEsperadas sea correcto
-	// y que haya solo 0 y 1
-	return fin.eof() && filas == filasEsperadas && columnas == columnasEsperadas;
+	valido = valido &&
+	        cantidadVivas == vivas &&       // Chequeo que la cantidad de vivas sea correcta
+	        cantidadElementos == elem &&    // Chequeo que el toroide tenga la cant correcta de elementos
+	        fin.eof();                      // Chequeo que el file termine después de la cant de vivas
+
+	return valido;
 }
 
 
