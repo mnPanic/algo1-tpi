@@ -59,8 +59,16 @@ vector<posicion> posicionesVivas(toroide t){
 }
 
 /***************************** EJERCICIO densidadPoblacion ******************************/
+int superficieTotal(toroide t) {
+    return rows(t) * cols(t);
+}
+
+int cantidadVivas(toroide t){
+    return posicionesVivas(t).size();
+}
+
 float densidadPoblacion(toroide t){
-    float densidad = 0.0;
+    float densidad = (float) cantidadVivas(t) / superficieTotal(t);
     return densidad;
 }
 
