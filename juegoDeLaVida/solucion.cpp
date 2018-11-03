@@ -1,8 +1,45 @@
 #include "solucion.h"
 
+/************************************** GENERALES ***************************************/
+
+int rows(toroide t) {
+    return t.size();
+}
+
+int cols(toroide t) {
+    int columnas = 0;
+
+    if (!t.empty()) {
+        columnas = t[0].size();
+    }
+
+    return columnas;
+}
+
 /********************************** EJERCICIO esValido **********************************/
+bool noEsVacio(toroide t) {
+    return (rows(t) > 0) && (cols(t) > 0);
+}
+
+bool esMatrizValida(toroide t) {
+    // bool esValida = true;
+    // for (int i = 0; i < rows(t) && esValida; i++) {
+    //     if (t[i].size() != cols(t)){
+    //         esValida = false;
+    //     }
+    // }
+    // return esValida;
+
+    int i = 0;
+    while (i < rows(t) && t[i].size() == cols(t)) {
+        i++;
+    }
+
+    return i == rows(t);
+}
+
 bool esValido(toroide t){
-    return true;
+    return noEsVacio(t) && esMatrizValida(t);
 }
 
 /****************************** EJERCICIO posicionesVivas *******************************/
