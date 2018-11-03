@@ -140,7 +140,7 @@ int columnas(toroide t) {
  *   - No se pudo escribir el toroide completo (sin espacio en disco, etc).
  *
  * @param nombreArchivo El nombre del archivo.
- * @param t El toroide a guardar.
+ * @param t El toroide válido a guardar.
  * @return Si la operación fue exitosa.
  */
 bool escribirToroide(string nombreArchivo, toroide &t) {
