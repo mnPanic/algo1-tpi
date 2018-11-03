@@ -43,8 +43,18 @@ bool esValido(toroide t){
 }
 
 /****************************** EJERCICIO posicionesVivas *******************************/
+
 vector<posicion> posicionesVivas(toroide t){
     vector<posicion> res;
+
+    for (int i = 0; i < rows(t); i++){
+        for (int j = 0; j < cols(t); j++) {
+            if (t[i][j]) {
+                res.push_back(posicion(i, j));
+            }
+        }
+    }
+
     return res;
 }
 
