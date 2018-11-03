@@ -82,8 +82,43 @@ float densidadPoblacion(toroide t){
 }
 
 /**************************** EJERCICIO evolucionDePosicion *****************************/
-bool evolucionDePosicion(toroide t, posicion p){
-    return true;
+posicion trasladar(toroide t, posicion p, tuple<int, int> dir) {
+    posicion pTransladada(
+            (get<0>(p) + get<0>(dir)) % rows(t),
+            (get<1>(p) + get<1>(dir)) % cols(t));
+}
+
+int cantidadVecinosVivos(toroide t, posicion p) {
+    int vecinosVivos = 0;
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            // falta omitir el caso de i==0 y j==0
+            tuple<int, int> dir(i, j);
+            posicion pTrasladada = trasladar(t, p, dir);
+
+            if (estaViva(t, pTrasladada)) {
+                vecinosVivos++;
+            }
+        }
+    }
+}
+
+bool debeVivir(toroide t, posicion p) {
+    bool vive;
+
+    int vecinosVivos = cantidadVecinosVivos(t, p);
+
+    if (estaViva(t, p)) {
+        vive = (2 <= vecinosVivos) && (vecinosVivos <= 3);
+    } else {
+        vive = (vecinosVivos == 3);
+    }
+
+    return vive;
+}
+
+bool evolucionDePosicion(toroide t, posicion p) {
+    return debeVivir(t, p);
 }
 
 /****************************** EJERCICIO evolucionToroide ******************************/
