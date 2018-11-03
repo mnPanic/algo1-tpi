@@ -16,6 +16,14 @@ int cols(toroide t) {
     return columnas;
 }
 
+/**
+ * Dado un toroide y una posicion válida,
+ * retorna si esa posición está viva.
+ */
+bool estaViva(toroide t, posicion p) {
+    return t[get<0>(p)][get<1>(p)];
+}
+
 /********************************** EJERCICIO esValido **********************************/
 bool noEsVacio(toroide t) {
     return (rows(t) > 0) && (cols(t) > 0);
@@ -49,8 +57,9 @@ vector<posicion> posicionesVivas(toroide t){
 
     for (int i = 0; i < rows(t); i++){
         for (int j = 0; j < cols(t); j++) {
-            if (t[i][j]) {
-                res.push_back(posicion(i, j));
+            posicion p(i, j);
+            if (estaViva(t, p)) {
+                res.push_back(p);
             }
         }
     }
