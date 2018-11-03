@@ -19,33 +19,10 @@ using namespace std;
 
 /******************************** EJERCICIO cargarToroide *******************************/
 
-/**
- * Dado un nombre de archivo, lee e interpreta el contenido del mismo como un toroide.
- * Modifica status para indicar si el procesamiento fue exitoso o no.
- * Los motivos por los que status = false (no exitoso) son:
- *   - No se pudo abrir el archivo (inexistente o sin permisos).
- * 	 - Los datos contenidos en el archivo no respetan el formato descripto anteriormente.
- *
- * @param nombreArchivo El nombre del archivo.
- * @param status El estado. Indica si fue exitoso.
- * @return El toroide cargado.
- */
-toroide cargarToroide(string nombreArchivo, bool &status) {
-	toroide t;
+bool esArchivoValido(string nombreArchivo) {
+    ifstream fin(nombreArchivo);
 
-	if (esArchivoValido(nombreArchivo) && esFormatoValido(nombreArchivo)) {
-		t = leerToroide(nombreArchivo);
-	} else {
-		status = false;
-	}
-
-	return t;
-}
-
-private bool esArchivoValido(String nombreArchivo) {
-	ifstream fin(nombreArchivo);
-
-	return !fin.fail();
+    return !fin.fail();
 }
 
 /**
@@ -62,51 +39,101 @@ private bool esArchivoValido(String nombreArchivo) {
  * 	[toroide]
  * 	[cantidadVivas]
  */
-private bool esFormatoValido(String nombreArchivo) {
-	bool valido = true;
+bool esFormatoValido(string nombreArchivo) {
+    bool valido = true;
 
-	ifstream fin(nombreArchivo);
+    ifstream fin(nombreArchivo);
 
-	int cantidadFilas = 0;
-	int cantidadColumnas = 0;
+    int cantidadFilas = 0;
+    int cantidadColumnas = 0;
 
-	// Comienza en -1 para que si el archivo no contiene la cantidadVivas,
-	// y el toroide no tiene ninguna viva, no lo tomemos como válido.
-	int cantidadVivas = -1;
+    // Comienza en -1 para que si el archivo no contiene la cantidadVivas,
+    // y el toroide no tiene ninguna viva, no lo tomemos como válido.
+    int cantidadVivas = -1;
 
-	fin >> cantidadFilas;
-	fin >> cantidadColumnas;
+    fin >> cantidadFilas;
+    fin >> cantidadColumnas;
 
-	int cantidadElementos = cantidadFilas * cantidadColumnas;
+    int cantidadElementos = cantidadFilas * cantidadColumnas;
 
-	int vivas = 0;
-	int valor = 0;
+    int vivas = 0;
+    int valor = 0;
     int elem = 0;
 
-	while (elem < cantidadElementos && valido && !fin.eof()) {
-		fin >> valor;
+    while (elem < cantidadElementos && valido && !fin.eof()) {
+        fin >> valor;
 
-		if (valor == 1 || valor == 0) {
-			vivas += valor;
-		} else {
-			valido = false;
-		}
+        if (valor == 1 || valor == 0) {
+            vivas += valor;
+        } else {
+            valido = false;
+        }
 
-		elem ++;
-	}
+        elem ++;
+    }
 
-	if (!fin.eof()) {
-		fin >> cantidadVivas;
-	}
+    if (!fin.eof()) {
+        fin >> cantidadVivas;
+    }
 
-	valido = valido &&
-	        cantidadVivas == vivas &&       // Chequeo que la cantidad de vivas sea correcta
-	        cantidadElementos == elem &&    // Chequeo que el toroide tenga la cant correcta de elementos
-	        fin.eof();                      // Chequeo que el file termine después de la cant de vivas
+    valido = valido &&
+             cantidadVivas == vivas &&       // Chequeo que la cantidad de vivas sea correcta
+             cantidadElementos == elem &&    // Chequeo que el toroide tenga la cant correcta de elementos
+             fin.eof();                      // Chequeo que el file termine después de la cant de vivas
 
-	return valido;
+    return valido;
 }
 
+/**
+ * Dado un archivo existente con formato válido, lee un toroide.
+ */
+toroide leerToroide(string nombreArchivo) {
+    ifstream fin(nombreArchivo);
+
+    int cantidadFilas = 0;
+    int cantidadColumnas = 0;
+
+    fin >> cantidadFilas;
+    fin >> cantidadColumnas;
+
+    toroide t(cantidadFilas, vector<bool>(cantidadColumnas));
+
+    int valor = 0;
+    for(int i = 0; i < cantidadFilas; i++) {
+        for (int j = 0; j < cantidadColumnas; j++) {
+            fin >> valor;
+            t[i][j] = (valor == 1);
+        }
+    }
+
+    return t;
+}
+
+
+/**
+ * Dado un nombre de archivo, lee e interpreta el contenido del mismo como un toroide.
+ * Modifica status para indicar si el procesamiento fue exitoso o no.
+ * Los motivos por los que status = false (no exitoso) son:
+ *   - No se pudo abrir el archivo (inexistente o sin permisos).
+ * 	 - Los datos contenidos en el archivo no respetan el formato descripto anteriormente.
+ *
+ * Si status = false no se garantiza nada del valor retornado.
+ *
+ * @param nombreArchivo El nombre del archivo.
+ * @param status El estado. Indica si fue exitoso.
+ * @return El toroide cargado.
+ */
+toroide cargarToroide(string nombreArchivo, bool &status) {
+	toroide t;
+
+	if (esArchivoValido(nombreArchivo) && esFormatoValido(nombreArchivo)) {
+		t = leerToroide(nombreArchivo);
+	} else {
+		status = false;
+	}
+
+	return t;
+}
 
 /******************************** EJERCICIO escribirToroide *****************************/
 
