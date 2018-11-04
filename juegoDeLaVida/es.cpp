@@ -125,6 +125,7 @@ toroide leerToroide(string nombreArchivo) {
  */
 toroide cargarToroide(string nombreArchivo, bool &status) {
 	toroide t;
+    status = true;
 
 	if (esArchivoValido(nombreArchivo) && esFormatoValido(nombreArchivo)) {
 		t = leerToroide(nombreArchivo);
