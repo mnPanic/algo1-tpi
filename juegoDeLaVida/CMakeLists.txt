@@ -25,7 +25,8 @@ set(SOURCE_FILES_TEST
 		tests/seleccionNaturalTEST.cpp
 		tests/fusionarTEST.cpp
 		tests/vistaTrasladadaTEST.cpp
-		tests/enCrecimientoTEST.cpp)
+		tests/enCrecimientoTEST.cpp
+		tests/nuestros/modTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
