@@ -159,8 +159,11 @@ void evolucionToroide(toroide& t){
 
 /***************************** EJERCICIO evolucionMultiple ******************************/
 toroide evolucionMultiple(toroide t, int k){
-    toroide result;
-    return result;
+    for(int i = 0; i < k; i++) {
+        evolucionToroide(t);
+    }
+
+    return t;
 }
 
 /******************************** EJERCICIO esPeriodico *********************************/
