@@ -18,3 +18,6 @@ int mod(int n, int m);
 posicion trasladar(toroide t, posicion p, tuple<int, int> dir);
 int cantidadVecinosVivos(toroide t, posicion p);
 bool debeVivir(toroide t, posicion p);
+
+// esPeriodico
+bool estaMuerto(toroide t);

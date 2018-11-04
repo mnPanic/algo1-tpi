@@ -167,8 +167,38 @@ toroide evolucionMultiple(toroide t, int k){
 }
 
 /******************************** EJERCICIO esPeriodico *********************************/
-bool esPeriodico(toroide t, int& p){
-    return false;
+bool estaMuerto(toroide t) {
+    bool muerto = true;
+    for (int i = 0; i < rows(t) && muerto; i++) {
+        for (int j = 0; j < cols(t) && muerto; j++) {
+            if (estaViva(t, posicion(i, j))) {
+                muerto = false;
+            }
+        }
+    }
+
+    return muerto;
+}
+
+bool esPeriodico(toroide t, int& p) {
+    toroide original = t;
+
+    int evoluciones = 1;
+    bool periodico = false;
+
+    evolucionToroide(t);
+
+    while(!estaMuerto(t) && t != original) {
+        evolucionToroide(t);
+        evoluciones++;
+    }
+
+    if (t == original) {
+        periodico = true;
+        p = evoluciones;
+    }
+
+    return periodico;
 }
 
 /******************************* EJERCICIO primosLejanos ********************************/

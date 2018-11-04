@@ -26,7 +26,9 @@ set(SOURCE_FILES_TEST
 		tests/fusionarTEST.cpp
 		tests/vistaTrasladadaTEST.cpp
 		tests/enCrecimientoTEST.cpp
-		tests/nuestros/modTEST.cpp tests/nuestros/trasladarTEST.cpp tests/nuestros/trasladarTEST.h)
+		tests/nuestros/modTEST.cpp
+		tests/nuestros/trasladarTEST.cpp
+		tests/nuestros/muertoTest.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
