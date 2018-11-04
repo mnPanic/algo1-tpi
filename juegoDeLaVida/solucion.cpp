@@ -82,17 +82,33 @@ float densidadPoblacion(toroide t){
 }
 
 /**************************** EJERCICIO evolucionDePosicion *****************************/
+/**
+ * Dados n entero y m natural,
+ * devuelve el resto en la división entera de n por m.
+ */
+int mod(int n, int m) {
+    while (n >= m || n < 0) {
+        n = (n < 0) ? n + m : n - m;
+    }
+    return n;
+}
+
+/**
+ * Traslada una posicion en una dirección dentro de un toroide,
+ * teniendo en cuenta las propiedades del mismo.
+ */
 posicion trasladar(toroide t, posicion p, tuple<int, int> dir) {
     posicion pTransladada(
-            (get<0>(p) + get<0>(dir)) % rows(t),
-            (get<1>(p) + get<1>(dir)) % cols(t));
+            mod((get<0>(p) + get<0>(dir)), rows(t)),
+            mod((get<1>(p) + get<1>(dir)), cols(t)));
+    return pTransladada;
 }
 
 int cantidadVecinosVivos(toroide t, posicion p) {
     int vecinosVivos = 0;
+
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
-            // falta omitir el caso de i==0 y j==0
             tuple<int, int> dir(i, j);
             posicion pTrasladada = trasladar(t, p, dir);
 
@@ -101,6 +117,14 @@ int cantidadVecinosVivos(toroide t, posicion p) {
             }
         }
     }
+
+    if (estaViva(t, p)) {
+        // Ya que al ver todas las traslaciones, la (0, 0) sería
+        // la misma posición, la cual no queremos contar como vecina.
+        vecinosVivos--;
+    }
+
+    return vecinosVivos;
 }
 
 bool debeVivir(toroide t, posicion p) {
