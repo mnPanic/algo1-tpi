@@ -1,5 +1,7 @@
 #include "solucion.h"
 
+#include "auxiliares.h"
+
 /************************************** GENERALES ***************************************/
 
 int rows(toroide t) {
