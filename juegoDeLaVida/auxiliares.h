@@ -21,3 +21,6 @@ bool debeVivir(toroide t, posicion p);
 
 // esPeriodico
 bool estaMuerto(toroide t);
+
+// primosLejanos
+bool mismaDimension (toroide t1, toroide t2);

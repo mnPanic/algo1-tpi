@@ -203,8 +203,13 @@ bool esPeriodico(toroide t, int& p) {
 }
 
 /******************************* EJERCICIO primosLejanos ********************************/
+bool mismaDimension (toroide t1, toroide t2) {
+    return (rows(t1) == rows(t2)) && (cols(t1) == cols(t2));
+}
+
 bool primosLejanos(toroide t1, toroide t2) {
-    return false;
+    int evoluciones = 0;
+    return mismaDimension(t1, t2) && esEvolucion(t1,t2,evoluciones);
 }
 
 /****************************** EJERCICIO seleccionNatural ******************************/

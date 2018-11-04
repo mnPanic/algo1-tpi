@@ -28,7 +28,7 @@ set(SOURCE_FILES_TEST
 		tests/enCrecimientoTEST.cpp
 		tests/nuestros/modTEST.cpp
 		tests/nuestros/trasladarTEST.cpp
-		tests/nuestros/muertoTest.cpp)
+		tests/nuestros/muertoTest.cpp tests/nuestros/mismaDimensionTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
