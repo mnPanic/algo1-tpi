@@ -149,6 +149,12 @@ bool evolucionDePosicion(toroide t, posicion p) {
 
 /****************************** EJERCICIO evolucionToroide ******************************/
 void evolucionToroide(toroide& t){
+    toroide original = t;
+    for (int i = 0; i < rows(original); i++) {
+        for (int j = 0; j < cols(original); j++) {
+            t[i][j] = evolucionDePosicion(original, posicion(i,j));
+        }
+    }
 }
 
 /***************************** EJERCICIO evolucionMultiple ******************************/
