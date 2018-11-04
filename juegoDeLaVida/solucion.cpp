@@ -180,25 +180,26 @@ bool estaMuerto(toroide t) {
     return muerto;
 }
 
-bool esPeriodico(toroide t, int& p) {
-    toroide original = t;
-
+bool esEvolucion (toroide t1, toroide t2, int &k) {
     int evoluciones = 1;
-    bool periodico = false;
+    bool evolucion = false;
 
-    evolucionToroide(t);
-
-    while(!estaMuerto(t) && t != original) {
-        evolucionToroide(t);
+    evolucionToroide(t1);
+    while(!estaMuerto(t1) && t1 != t2) {
+        evolucionToroide(t1);
         evoluciones++;
     }
 
-    if (t == original) {
-        periodico = true;
-        p = evoluciones;
+    if (t1 == t2) {
+        evolucion = true;
+        k = evoluciones;
     }
 
-    return periodico;
+    return evolucion;
+}
+
+bool esPeriodico(toroide t, int& p) {
+    return esEvolucion(t, t, p);
 }
 
 /******************************* EJERCICIO primosLejanos ********************************/
