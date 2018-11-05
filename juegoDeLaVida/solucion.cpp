@@ -198,6 +198,11 @@ bool esEvolucion (toroide t1, toroide t2, int &k) {
     return evolucion;
 }
 
+bool esPeriodico(toroide t) {
+    int p;
+    return esPeriodico(t, p);
+}
+
 bool esPeriodico(toroide t, int& p) {
     return esEvolucion(t, t, p);
 }
@@ -213,8 +218,44 @@ bool primosLejanos(toroide t1, toroide t2) {
 }
 
 /****************************** EJERCICIO seleccionNatural ******************************/
+
+/**
+ * Dado un toroide no periodico, retorna la cantidad de ticks que tarda en morir.
+ */
+int cantidadDeTicksHastaMorir(toroide t) {
+    int ticks = 0;
+    while(!estaMuerto(t)) {
+        evolucionToroide(t);
+        ticks++;
+    }
+
+    return ticks;
+}
+
+bool noMuere(toroide t) {
+    return esPeriodico(t) && !estaMuerto(t);
+}
+
+/**
+ * Dada una lista de toroides, dice cual es el que mas tarda en morir.
+ * Si la lista es vacía retorna -1.
+ */
 int seleccionNatural(vector<toroide> ts){
-    int indice;
+    int indice = -1;
+    int maxTicksEnMorir = -1;
+    bool hayUnoQueNoMuere = false;
+
+    toroide t;
+    for (int i = 0; i < ts.size() && !hayUnoQueNoMuere; i++) {
+        t = ts[i];
+        if (noMuere(t)) {
+            indice = i;
+            hayUnoQueNoMuere = true;
+        } else if (cantidadDeTicksHastaMorir(t) > maxTicksEnMorir){
+            indice = i;
+            maxTicksEnMorir = cantidadDeTicksHastaMorir(t);
+        }
+    }
     return indice;
 }
 

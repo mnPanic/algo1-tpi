@@ -24,3 +24,7 @@ bool estaMuerto(toroide t);
 
 // primosLejanos
 bool mismaDimension (toroide t1, toroide t2);
+
+// seleccionNatural
+int cantidadDeTicksHastaMorir(toroide t);
+bool noMuere(toroide t);
