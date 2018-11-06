@@ -180,22 +180,42 @@ bool estaMuerto(toroide t) {
     return muerto;
 }
 
+bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts) {
+    int i = 0;
+    int s = ts.size() - 1;
+    while (i < s && ts[i] != t) {
+        i++;
+    }
+
+    return i < s;
+}
+
+/**
+ * Dice si t2 es evolución de t1 y almacena la evolución en k.
+ */
+ // TODO: revisar
 bool esEvolucion (toroide t1, toroide t2, int &k) {
-    int evoluciones = 1;
-    bool evolucion = false;
+    // Caso borde
+    if (estaMuerto(t1) && estaMuerto(t2)) {
+        k = 1;
+        return true;
+    }
 
-    evolucionToroide(t1);
-    while(!estaMuerto(t1) && t1 != t2) {
+    vector<toroide> evoluciones;
+    bool evolucionado = false;
+    evoluciones.push_back(t1);
+
+    while (!estaMuerto(t1) && !perteneceExcluyendoUltimo(t1, evoluciones)) {
         evolucionToroide(t1);
-        evoluciones++;
+        evoluciones.push_back(t1);
     }
 
-    if (t1 == t2) {
-        evolucion = true;
-        k = evoluciones;
+    if (evoluciones[evoluciones.size() - 1] == t2) {
+        evolucionado = true;
+        k = evoluciones.size() - 1;
     }
 
-    return evolucion;
+    return evolucionado;
 }
 
 bool esPeriodico(toroide t) {
