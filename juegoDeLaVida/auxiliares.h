@@ -21,6 +21,7 @@ bool debeVivir(toroide t, posicion p);
 
 // esPeriodico
 bool estaMuerto(toroide t);
+bool esEvolucion (toroide t1, toroide t2, int &k);
 bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts);
 
 // primosLejanos
