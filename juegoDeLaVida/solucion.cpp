@@ -190,6 +190,16 @@ bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts) {
     return i < s;
 }
 
+bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts) {
+    int i = 1;
+    int s = ts.size();
+    while (i < s && ts[i] != t) {
+        i++;
+    }
+
+    return i < s;
+}
+
 /**
  * Dice si t2 es evolución de t1 y almacena la evolución en k.
  */
@@ -205,7 +215,7 @@ bool esEvolucion (toroide t1, toroide t2, int &k) {
     bool evolucionado = false;
     evoluciones.push_back(t1);
 
-    while (!estaMuerto(t1) && !perteneceExcluyendoUltimo(t1, evoluciones)) {
+    while (!estaMuerto(t1) && !perteneceExcluyendoUltimo(t1, evoluciones) && !perteneceExcluyendoPrimero(t2, evoluciones)) {
         evolucionToroide(t1);
         evoluciones.push_back(t1);
     }

@@ -32,7 +32,7 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/mismaDimensionTEST.cpp
 		tests/nuestros/cantidadDeTicksHastaMorirTEST.cpp
 		tests/nuestros/noMuereTEST.cpp
-		tests/nuestros/perteneceTEST.cpp tests/nuestros/esEvolucionTEST.cpp)
+		tests/nuestros/perteneceTEST.cpp tests/nuestros/esEvolucionTEST.cpp tests/nuestros/perteneceExcluyendoPrimeroTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 

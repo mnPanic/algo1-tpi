@@ -23,6 +23,7 @@ bool debeVivir(toroide t, posicion p);
 bool estaMuerto(toroide t);
 bool esEvolucion (toroide t1, toroide t2, int &k);
 bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts);
+bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts);
 
 // primosLejanos
 bool mismaDimension (toroide t1, toroide t2);
