@@ -291,7 +291,17 @@ int seleccionNatural(vector<toroide> ts){
 
 /********************************** EJERCICIO fusionar **********************************/
 toroide fusionar(toroide t1, toroide t2){
-    toroide t;
+    toroide t(rows(t1), vector<bool>(cols(t1)));
+
+    bool celdaViva;
+
+    for (int i = 0; i < rows(t1); i++) {
+        for (int j = 0; j < cols(t2); j++) {
+            celdaViva = t1[i][j] && t2[i][j];
+            t[i][j] = celdaViva;
+        }
+    }
+
     return t;
 }
 
