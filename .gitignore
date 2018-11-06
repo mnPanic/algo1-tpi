@@ -1,2 +1,6 @@
 .idea
 cmake-build-debug
+
+# Compilados del projecto
+juegoDeLaVida/juegoDeLaVida
+juegoDeLaVida/juegoDeLaVidaTest
