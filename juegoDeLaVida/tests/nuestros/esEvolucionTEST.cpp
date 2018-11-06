@@ -82,3 +82,24 @@ TEST(esEvolucionTEST, diferentesEvolucion) {
     EXPECT_TRUE(esEvolucion(t1, t2, p));
     EXPECT_EQ(p, 1);
 }
+
+
+TEST(esEvolucionTEST, diferentesPeriodicoAntes) {
+    // se convierte en un bloque, volviendose periódico antes de llegar a t2
+    toroide t1 = {
+            {false, false, false, false},
+            {false, true, false, false},
+            {false, true, true, false},
+            {false, false, false, false},
+    };
+    toroide t2 = {
+            {false, false, false, false},
+            {false, false, false, false},
+            {false, false, false, false},
+            {false, false, false, false},
+    };
+
+    int p = 0;
+    EXPECT_FALSE(esEvolucion(t1, t2, p));
+    EXPECT_EQ(p, 0);
+}
