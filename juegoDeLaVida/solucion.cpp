@@ -327,13 +327,23 @@ bool esTraslacionEnDireccion(toroide t1, toroide t2, direccion dir) {
     return esTraslacion;
 }
 
-// Para ver que t2 sea vista trasladada de t1, quiero ver que
-// existe una dirección de traslación tal que
-// el valor de todas las posiciones de t1 trasladadas es el valor en t2
 bool vistaTrasladada(toroide t1, toroide t2){
-    bool res = false;
-    // chequear que tengan la misma dimensión
-    return res;
+    if (!mismaDimension(t1, t2)) {
+        return false;
+    }
+
+    bool esTraslacion = false;
+
+    // itero sobre todas las posibles direcciones que estén en rango
+    for (int i = 0; i < rows(t1) && !esTraslacion; i++) {
+        for (int j = 0; j < cols(t1) && !esTraslacion; j++) {
+            direccion dir(i, j);
+            if (esTraslacionEnDireccion(t1, t2, dir)) {
+                esTraslacion = true;
+            }
+        }
+    }
+    return esTraslacion;
 }
 
 /******************************* EJERCICIO enCrecimiento ********************************/
