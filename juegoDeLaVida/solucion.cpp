@@ -99,7 +99,7 @@ int mod(int n, int m) {
  * Traslada una posicion en una dirección dentro de un toroide,
  * teniendo en cuenta las propiedades del mismo.
  */
-posicion trasladar(toroide t, posicion p, tuple<int, int> dir) {
+posicion trasladar(toroide t, posicion p, direccion dir) {
     posicion pTransladada(
             mod((get<0>(p) + get<0>(dir)), rows(t)),
             mod((get<1>(p) + get<1>(dir)), cols(t)));
@@ -111,7 +111,7 @@ int cantidadVecinosVivos(toroide t, posicion p) {
 
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
-            tuple<int, int> dir(i, j);
+            direccion dir(i, j);
             posicion pTrasladada = trasladar(t, p, dir);
 
             if (estaViva(t, pTrasladada)) {
