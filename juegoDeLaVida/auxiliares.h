@@ -31,3 +31,6 @@ bool mismaDimension (toroide t1, toroide t2);
 // seleccionNatural
 int cantidadDeTicksHastaMorir(toroide t);
 bool noMuere(toroide t);
+
+// vistaTrasladada
+bool esTraslacionEnDireccion(toroide t1, toroide t2, direccion dir);
