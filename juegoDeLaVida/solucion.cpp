@@ -4,6 +4,18 @@
 
 /************************************** GENERALES ***************************************/
 
+/**
+ * Dados n entero y m natural,
+ * devuelve el resto en la división entera de n por m.
+ */
+int mod(int n, int m) {
+    while (n >= m || n < 0) {
+        n = (n < 0) ? n + m : n - m;
+    }
+    return n;
+}
+
+
 int rows(toroide t) {
     return t.size();
 }
@@ -18,6 +30,22 @@ int cols(toroide t) {
     return columnas;
 }
 
+
+bool mismaDimension (toroide t1, toroide t2) {
+    return (rows(t1) == rows(t2)) && (cols(t1) == cols(t2));
+}
+
+/**
+ * Traslada una posicion en una dirección dentro de un toroide,
+ * teniendo en cuenta las propiedades del mismo.
+ */
+posicion trasladar(toroide t, posicion p, direccion dir) {
+    posicion pTransladada(
+            mod((get<0>(p) + get<0>(dir)), rows(t)),
+            mod((get<1>(p) + get<1>(dir)), cols(t)));
+    return pTransladada;
+}
+
 /**
  * Dado un toroide y una posicion válida,
  * retorna si esa posición está viva.
@@ -26,12 +54,26 @@ bool estaViva(toroide t, posicion p) {
     return t[get<0>(p)][get<1>(p)];
 }
 
+bool estaMuerto(toroide t) {
+    bool muerto = true;
+    for (int i = 0; i < rows(t) && muerto; i++) {
+        for (int j = 0; j < cols(t) && muerto; j++) {
+            if (estaViva(t, posicion(i, j))) {
+                muerto = false;
+            }
+        }
+    }
+
+    return muerto;
+}
+
 /********************************** EJERCICIO esValido **********************************/
 bool noEsVacio(toroide t) {
     return (rows(t) > 0) && (cols(t) > 0);
 }
 
 bool esMatrizValida(toroide t) {
+    // TODO
     // bool esValida = true;
     // for (int i = 0; i < rows(t) && esValida; i++) {
     //     if (t[i].size() != cols(t)){
@@ -84,28 +126,6 @@ float densidadPoblacion(toroide t){
 }
 
 /**************************** EJERCICIO evolucionDePosicion *****************************/
-/**
- * Dados n entero y m natural,
- * devuelve el resto en la división entera de n por m.
- */
-int mod(int n, int m) {
-    while (n >= m || n < 0) {
-        n = (n < 0) ? n + m : n - m;
-    }
-    return n;
-}
-
-/**
- * Traslada una posicion en una dirección dentro de un toroide,
- * teniendo en cuenta las propiedades del mismo.
- */
-posicion trasladar(toroide t, posicion p, direccion dir) {
-    posicion pTransladada(
-            mod((get<0>(p) + get<0>(dir)), rows(t)),
-            mod((get<1>(p) + get<1>(dir)), cols(t)));
-    return pTransladada;
-}
-
 int cantidadVecinosVivos(toroide t, posicion p) {
     int vecinosVivos = 0;
 
@@ -167,19 +187,6 @@ toroide evolucionMultiple(toroide t, int k){
 }
 
 /******************************** EJERCICIO esPeriodico *********************************/
-bool estaMuerto(toroide t) {
-    bool muerto = true;
-    for (int i = 0; i < rows(t) && muerto; i++) {
-        for (int j = 0; j < cols(t) && muerto; j++) {
-            if (estaViva(t, posicion(i, j))) {
-                muerto = false;
-            }
-        }
-    }
-
-    return muerto;
-}
-
 bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts) {
     int i = 0;
     int s = ts.size() - 1;
@@ -238,10 +245,6 @@ bool esPeriodico(toroide t, int& p) {
 }
 
 /******************************* EJERCICIO primosLejanos ********************************/
-bool mismaDimension (toroide t1, toroide t2) {
-    return (rows(t1) == rows(t2)) && (cols(t1) == cols(t2));
-}
-
 bool primosLejanos(toroide t1, toroide t2) {
     int evoluciones = 0;
     return mismaDimension(t1, t2) && esEvolucion(t1,t2,evoluciones);
