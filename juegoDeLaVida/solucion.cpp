@@ -353,9 +353,167 @@ bool vistaTrasladada(toroide t1, toroide t2){
 }
 
 /******************************* EJERCICIO enCrecimiento ********************************/
+
+bool columnaTieneAlMenosUnaViva(toroide t, posicion p) {
+    int j = get<1>(p); // fijo la columna
+    bool viva = false;
+
+    // recorro las filas
+    for (int i = 0; i < cols(t) && !viva; i++) {
+        if (estaViva(t, posicion(i, j))) {
+            viva = true;
+        }
+    }
+
+    return viva;
+}
+
+bool filaTieneAlMenosUnaViva(toroide t, posicion p) {
+    int i = get<0>(p); // fijo la fila
+    bool viva = false;
+
+    // recorro las columnas
+    for (int j = 0; j < cols(t) && !viva; j++) {
+        if (estaViva(t, posicion(i, j))) {
+            viva = true;
+        }
+    }
+
+    return viva;
+}
+
+/**
+ * Se queda con la maxima posicion que cumpla que:
+ *   - La fila tiene al menos una posicion viva
+ *   - La columna tiene al menos una posicion viva
+ */
+posicion obtenerMaxEsquina(toroide t) {
+    posicion maxVertice = posicion(-1, -1);
+
+    for (int i = 0; i < rows(t); i++) {
+        for (int j = 0; j < cols(t); j++) {
+            posicion actual(i, j);
+            if (columnaTieneAlMenosUnaViva(t, actual) && filaTieneAlMenosUnaViva(t, actual)) {
+                maxVertice = actual;
+            }
+        }
+    }
+
+    return maxVertice;
+}
+
+/**
+ * Se queda con la minima posicion que cumpla que:
+ *   - La fila tiene al menos una posicion viva
+ *   - La columna tiene al menos una posicion viva
+ */
+posicion obtenerMinEsquina(toroide t) {
+    posicion pos = posicion(0, 0);
+
+    for (int i = 0; i < rows(t); i++) {
+        for (int j = 0; j < cols(t); j++) {
+            posicion actual(i, j);
+            if (columnaTieneAlMenosUnaViva(t, actual) && filaTieneAlMenosUnaViva(t, actual)) {
+                // Estamos conscientes de que es feo hacer un return en el medio de un for.
+                return actual;
+            }
+        }
+    }
+
+    return pos;
+
+}
+
+vector<posicion> obtenerEsquinasQueEncierranPosVivas(toroide t) {
+    vector<posicion> esquinas = {
+            obtenerMinEsquina(t),
+            obtenerMaxEsquina(t)
+    };
+
+    return esquinas;
+}
+
+/**
+ * Obtiene la mínima superficie que cubre todas las posiciones vivas de una traslacion de un toroide.
+ */
+int minimaSuperficieQueCubre(toroide t) {
+    vector<posicion> esquinas = obtenerEsquinasQueEncierranPosVivas(t);
+
+    posicion min = esquinas[0];
+    posicion max = esquinas[1];
+
+    int superficie = (((get<1>(max) - get<1>(min)) + 1) *   // base
+                      ((get<0>(max) - get<0>(min)) + 1));   // altura
+
+    return superficie;
+}
+
+/**
+ * Traslada a un toroide t en la dirección dir.
+ */
+toroide trasladarToroide(toroide t, direccion dir) {
+    toroide trasladado(rows(t), vector<bool>(cols(t)));
+
+    for (int i = 0; i < rows(t); i++) {
+        for (int j = 0; j < cols(t); j++) {
+            posicion pos(i, j);
+            posicion posTrasladada = trasladar(t, pos, dir);
+
+            int iTrasladado = get<0>(posTrasladada);
+            int jTrasladado = get<1>(posTrasladada);
+
+            trasladado[iTrasladado][jTrasladado] = estaViva(t, pos);
+        }
+    }
+
+    return trasladado;
+}
+
+/**
+ * Obtiene las posibles direcciones en las que se puede trasladar un toroide.
+ *
+ * Separamos a todas las posibles direcciones en clases de equivalencia, según su resto mod cols y rows.
+ * Y nos quedamos con el mínimo positivo (contando el 0) de cada una.
+ * Así, basta con ver todas las posibles combinaciones de 0 a cols(t) y 0 a rows(t).
+ */
+vector<direccion> obtenerDireccionesDeTraslacion(toroide t) {
+    vector<direccion> direcciones;
+
+    for (int i = 0; i < rows(t); i++) {
+        for (int j = 0; j < cols(t); j++) {
+            direcciones.push_back(direccion(i, j));
+        }
+    }
+    return direcciones;
+}
+
+/**
+ * Obtiene la mínima superficie de todas las traslaciones que cubre a todas las posiciones vivas.
+ */
+int minimaSuperficieDeTraslacionesQueCubre(toroide t) {
+    vector<direccion> direcciones = obtenerDireccionesDeTraslacion(t);
+
+    int superficieMinima = rows(t) * cols(t); // comienza desde la maxima area.
+
+    for(int i = 0; i < direcciones.size(); i++) {
+        toroide tTrasladado = trasladarToroide(t, direcciones[i]);
+        int superficie = minimaSuperficieQueCubre(tTrasladado);
+
+        if (superficie < superficieMinima) {
+            superficieMinima = superficie;
+        }
+    }
+
+    return superficieMinima;
+}
+
 bool enCrecimiento(toroide t){
-    bool res;
-    return res;
+    int superficieActual = minimaSuperficieDeTraslacionesQueCubre(t);
+
+    evolucionToroide(t);
+    int superficieDeEvolucion = minimaSuperficieDeTraslacionesQueCubre(t);
+
+    return superficieActual < superficieDeEvolucion;
 }
 
 /******************************* EJERCICIO soloBloques (OPCIONAL) ***********************/
