@@ -126,6 +126,9 @@ float densidadPoblacion(toroide t){
 }
 
 /**************************** EJERCICIO evolucionDePosicion *****************************/
+// TODO: Tomar en cuenta que estamos contando a la misma posicion como vecina mas de una vez,
+// Solución: Guardiar en una lista todos los potenciales vecinos y quedarse con los únicos.
+
 int cantidadVecinosVivos(toroide t, posicion p) {
     int vecinosVivos = 0;
 
