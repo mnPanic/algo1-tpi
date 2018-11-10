@@ -32,7 +32,19 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/mismaDimensionTEST.cpp
 		tests/nuestros/cantidadDeTicksHastaMorirTEST.cpp
 		tests/nuestros/noMuereTEST.cpp
-		tests/nuestros/perteneceTEST.cpp tests/nuestros/esEvolucionTEST.cpp tests/nuestros/perteneceExcluyendoPrimeroTEST.cpp tests/nuestros/esTraslacionEnDireccionTEST.cpp)
+		tests/nuestros/perteneceTEST.cpp
+		tests/nuestros/esEvolucionTEST.cpp
+		tests/nuestros/perteneceExcluyendoPrimeroTEST.cpp
+		tests/nuestros/esTraslacionEnDireccionTEST.cpp
+		tests/nuestros/trasladarToroideTEST.cpp
+		tests/nuestros/minimaSuperficieQueCubreTEST.cpp
+		tests/nuestros/obtenerEsquinasQueEncierranPosVivasTEST.cpp
+		tests/nuestros/columnaTieneAlMenosUnaVivaTEST.cpp
+		tests/nuestros/filaTieneAlMenosUnaVivaTEST.cpp
+		tests/nuestros/obtenerDireccionesDeTraslacionTEST.cpp
+		tests/nuestros/evolucionToroideTEST.cpp
+		tests/nuestros/enCrecimientoTEST.cpp
+		tests/nuestros/minimaSuperficieDeTraslacionesQueCubreTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 

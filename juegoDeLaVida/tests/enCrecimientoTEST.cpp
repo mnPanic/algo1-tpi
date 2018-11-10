@@ -4,7 +4,8 @@
 
 using namespace std;
 
-TEST(enCrecimientoTEST, toroideDiagonalSeHaceTodoTrue){
+/*
+ * TEST(enCrecimientoTEST, toroideDiagonalSeHaceTodoTrue){
     toroide t1 = { 
                   {true, false, false}, 
                   {false, true, false}, 
@@ -12,6 +13,7 @@ TEST(enCrecimientoTEST, toroideDiagonalSeHaceTodoTrue){
     bool res = enCrecimiento(t1);
     EXPECT_TRUE(res);
 }
+ */
 
 TEST(enCrecimientoTEST, todoFalsoNoCrece){
     toroide t1 = { 
