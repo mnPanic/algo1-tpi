@@ -46,7 +46,11 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/evolucionToroide/evolucionToroideTEST.cpp
 		tests/nuestros/enCrecimiento/enCrecimientoTEST.cpp
 		tests/nuestros/enCrecimiento/minimaSuperficieDeTraslacionesQueCubreTEST.cpp
-		tests/nuestros/seleccionNatural/seleccionNaturalTEST.cpp)
+		tests/nuestros/seleccionNatural/seleccionNaturalTEST.cpp
+		tests/nuestros/evolucionDePosicion/cantidadVecinosVivosTEST.cpp
+		tests/nuestros/evolucionDePosicion/contarCantidadVivasTEST.cpp
+		tests/nuestros/evolucionDePosicion/perteneceTEST.cpp
+		tests/nuestros/evolucionDePosicion/obtenerVecinoUnicosTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 

@@ -175,30 +175,52 @@ float densidadPoblacion(toroide t){
 }
 
 /**************************** EJERCICIO evolucionDePosicion *****************************/
-// TODO: Tomar en cuenta que estamos contando a la misma posicion como vecina mas de una vez,
-// Solución: Guardiar en una lista todos los potenciales vecinos y quedarse con los únicos.
+/**
+ * Dado un vector de posiciones válidas para un toroide, cuenta cuantas están vivas.
+ */
+int contarCantidadVivas (toroide t, vector<posicion> ps) {
+    int cantVivas = 0;
 
-int cantidadVecinosVivos(toroide t, posicion p) {
-    int vecinosVivos = 0;
+    for (int i = 0; i < ps.size(); i++) {
+        if (estaViva(t, ps[i])) cantVivas++;
+    }
+
+    return cantVivas;
+}
+
+/**
+ * Dado una posicion y un vector de posiciones, dice si pertence.
+ */
+bool pertenece (posicion p, vector<posicion> ps) {
+    int i = 0;
+
+    while(i < ps.size() && p != ps[i]){
+        i++;
+    }
+
+    return i != ps.size();
+}
+
+vector<posicion> obtenerVecinosUnicos(toroide t, posicion p) {
+    vector<posicion> vecinos;
 
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
-            direccion dir(i, j);
-            posicion pTrasladada = trasladar(t, p, dir);
+            direccion dirTraslacion(i, j);
+            posicion posTrasladada = trasladar(t, p ,dirTraslacion);
 
-            if (estaViva(t, pTrasladada)) {
-                vecinosVivos++;
+            if (!pertenece(posTrasladada, vecinos) && posTrasladada != p){
+                vecinos.push_back(posTrasladada);
             }
         }
     }
+    return vecinos;
+}
 
-    if (estaViva(t, p)) {
-        // Ya que al ver todas las traslaciones, la (0, 0) sería
-        // la misma posición, la cual no queremos contar como vecina.
-        vecinosVivos--;
-    }
+int cantidadVecinosVivos(toroide t, posicion p) {
+    vector<posicion> vecinosUnicos = obtenerVecinosUnicos(t, p);
 
-    return vecinosVivos;
+    return contarCantidadVivas(t, vecinosUnicos);
 }
 
 bool debeVivir(toroide t, posicion p) {
