@@ -50,7 +50,8 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/evolucionDePosicion/cantidadVecinosVivosTEST.cpp
 		tests/nuestros/evolucionDePosicion/contarCantidadVivasTEST.cpp
 		tests/nuestros/evolucionDePosicion/perteneceTEST.cpp
-		tests/nuestros/evolucionDePosicion/obtenerVecinoUnicosTEST.cpp)
+		tests/nuestros/evolucionDePosicion/obtenerVecinoUnicosTEST.cpp
+		tests/nuestros/vistaTrasladada/vistaTrasladadaTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
