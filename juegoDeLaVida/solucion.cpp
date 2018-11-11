@@ -223,10 +223,33 @@ int cantidadVecinosVivos(toroide t, posicion p) {
     return contarCantidadVivas(t, vecinosUnicos);
 }
 
+int cantidadVecinosVivosIncorrecta(toroide t, posicion p) {
+    int vecinosVivos = 0;
+
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            direccion dir(i, j);
+            posicion pTrasladada = trasladar(t, p, dir);
+
+            if (estaViva(t, pTrasladada)) {
+                vecinosVivos++;
+            }
+        }
+    }
+
+    if (estaViva(t, p)) {
+        // Ya que al ver todas las traslaciones, la (0, 0) sería
+        // la misma posición, la cual no queremos contar como vecina.
+        vecinosVivos--;
+    }
+
+    return vecinosVivos;
+}
+
 bool debeVivir(toroide t, posicion p) {
     bool vive;
 
-    int vecinosVivos = cantidadVecinosVivos(t, p);
+    int vecinosVivos = cantidadVecinosVivosIncorrecta(t, p);
 
     if (estaViva(t, p)) {
         vive = (2 <= vecinosVivos) && (vecinosVivos <= 3);
