@@ -62,9 +62,3 @@ TEST(seleccionNaturalTEST, DiagonalVsHorizontal){
     int res = seleccionNatural(ts);
     EXPECT_EQ(res, 1);
 }
-
-TEST(seleccionNaturalTEST, listaVacia){
-    vector<toroide> ts;
-    int res = seleccionNatural(ts);
-    EXPECT_EQ(res, -1);
-}

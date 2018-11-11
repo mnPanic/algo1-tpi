@@ -1,4 +1,4 @@
-#include "../../auxiliares.h"
+#include "../../../auxiliares.h"
 #include "gtest/gtest.h"
 
 TEST(trasladarTEST, direccionesUnitarias){

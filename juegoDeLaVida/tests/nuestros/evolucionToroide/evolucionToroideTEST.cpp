@@ -1,4 +1,4 @@
-#include "../../solucion.h"
+#include "../../../solucion.h"
 #include "gtest/gtest.h"
 
 TEST(evolucionToroideTEST, toroideDiagonalSeHaceTodoTrue){

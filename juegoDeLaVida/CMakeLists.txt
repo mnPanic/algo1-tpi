@@ -26,25 +26,27 @@ set(SOURCE_FILES_TEST
 		tests/fusionarTEST.cpp
 		tests/vistaTrasladadaTEST.cpp
 		tests/enCrecimientoTEST.cpp
-		tests/nuestros/modTEST.cpp
-		tests/nuestros/trasladarTEST.cpp
-		tests/nuestros/muertoTEST.cpp
-		tests/nuestros/mismaDimensionTEST.cpp
-		tests/nuestros/cantidadDeTicksHastaMorirTEST.cpp
-		tests/nuestros/noMuereTEST.cpp
-		tests/nuestros/perteneceTEST.cpp
-		tests/nuestros/esEvolucionTEST.cpp
-		tests/nuestros/perteneceExcluyendoPrimeroTEST.cpp
-		tests/nuestros/esTraslacionEnDireccionTEST.cpp
-		tests/nuestros/trasladarToroideTEST.cpp
-		tests/nuestros/minimaSuperficieQueCubreTEST.cpp
-		tests/nuestros/obtenerEsquinasQueEncierranPosVivasTEST.cpp
-		tests/nuestros/columnaTieneAlMenosUnaVivaTEST.cpp
-		tests/nuestros/filaTieneAlMenosUnaVivaTEST.cpp
-		tests/nuestros/obtenerDireccionesDeTraslacionTEST.cpp
-		tests/nuestros/evolucionToroideTEST.cpp
-		tests/nuestros/enCrecimientoTEST.cpp
-		tests/nuestros/minimaSuperficieDeTraslacionesQueCubreTEST.cpp)
+		tests/nuestros/generales/modTEST.cpp
+		tests/nuestros/generales/trasladarTEST.cpp
+		tests/nuestros/generales/muertoTest.cpp
+		tests/nuestros/generales/mismaDimensionTEST.cpp
+		tests/nuestros/seleccionNatural/cantidadDeTicksHastaMorirTEST.cpp
+		tests/nuestros/seleccionNatural/noMuereTEST.cpp
+		tests/nuestros/esPeriodico/esPeriodicoTEST.cpp
+		tests/nuestros/esEvolucion/perteneceTEST.cpp
+		tests/nuestros/esEvolucion/esEvolucionTEST.cpp
+		tests/nuestros/esEvolucion/perteneceExcluyendoPrimeroTEST.cpp
+		tests/nuestros/vistaTrasladada/esTraslacionEnDireccionTEST.cpp
+		tests/nuestros/enCrecimiento/trasladarToroideTEST.cpp
+		tests/nuestros/enCrecimiento/minimaSuperficieQueCubreTEST.cpp
+		tests/nuestros/enCrecimiento/obtenerEsquinasQueEncierranPosVivasTEST.cpp
+		tests/nuestros/enCrecimiento/columnaTieneAlMenosUnaVivaTEST.cpp
+		tests/nuestros/enCrecimiento/filaTieneAlMenosUnaVivaTEST.cpp
+		tests/nuestros/enCrecimiento/obtenerDireccionesDeTraslacionTEST.cpp
+		tests/nuestros/evolucionToroide/evolucionToroideTEST.cpp
+		tests/nuestros/enCrecimiento/enCrecimientoTEST.cpp
+		tests/nuestros/enCrecimiento/minimaSuperficieDeTraslacionesQueCubreTEST.cpp
+		tests/nuestros/seleccionNatural/seleccionNaturalTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
