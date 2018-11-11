@@ -33,9 +33,9 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/seleccionNatural/cantidadDeTicksHastaMorirTEST.cpp
 		tests/nuestros/seleccionNatural/noMuereTEST.cpp
 		tests/nuestros/esPeriodico/esPeriodicoTEST.cpp
-		tests/nuestros/esEvolucion/perteneceTEST.cpp
-		tests/nuestros/esEvolucion/esEvolucionTEST.cpp
-		tests/nuestros/esEvolucion/perteneceExcluyendoPrimeroTEST.cpp
+		tests/nuestros/generales/perteneceTEST.cpp
+		tests/nuestros/generales/esEvolucionTEST.cpp
+		tests/nuestros/generales/perteneceExcluyendoPrimeroTEST.cpp
 		tests/nuestros/vistaTrasladada/esTraslacionEnDireccionTEST.cpp
 		tests/nuestros/enCrecimiento/trasladarToroideTEST.cpp
 		tests/nuestros/enCrecimiento/minimaSuperficieQueCubreTEST.cpp

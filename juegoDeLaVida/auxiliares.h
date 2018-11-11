@@ -8,6 +8,9 @@ bool mismaDimension (toroide t1, toroide t2);
 posicion trasladar(toroide t, posicion p, direccion dir);
 bool estaViva(toroide t, posicion p);
 bool estaMuerto(toroide t);
+bool esEvolucion (toroide t1, toroide t2, int &k);
+bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts);
+bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts);
 
 // esValido
 bool noEsVacio(toroide t);
@@ -20,11 +23,6 @@ int cantidadVivas(toroide t);
 // evolucionDePosicion
 int cantidadVecinosVivos(toroide t, posicion p);
 bool debeVivir(toroide t, posicion p);
-
-// esPeriodico
-bool esEvolucion (toroide t1, toroide t2, int &k);
-bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts);
-bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts);
 
 // seleccionNatural
 int cantidadDeTicksHastaMorir(toroide t);
