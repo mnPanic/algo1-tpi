@@ -33,7 +33,7 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/seleccionNatural/cantidadDeTicksHastaMorirTEST.cpp
 		tests/nuestros/seleccionNatural/noMuereTEST.cpp
 		tests/nuestros/esPeriodico/esPeriodicoTEST.cpp
-		tests/nuestros/generales/perteneceTEST.cpp
+		tests/nuestros/generales/perteneceExcluyendoUltimoTEST.cpp
 		tests/nuestros/generales/esEvolucionTEST.cpp
 		tests/nuestros/generales/perteneceExcluyendoPrimeroTEST.cpp
 		tests/nuestros/vistaTrasladada/esTraslacionEnDireccionTEST.cpp

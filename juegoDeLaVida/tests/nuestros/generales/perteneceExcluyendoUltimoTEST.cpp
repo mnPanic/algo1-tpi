@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TEST(perteneceTEST, pertenece){
+TEST(perteneceExcluyendoUltimoTEST, pertenece){
     toroide t1 = {
             {false, false, false},
             {false, false, false},
@@ -21,7 +21,7 @@ TEST(perteneceTEST, pertenece){
     EXPECT_TRUE(perteneceExcluyendoUltimo(t1, ts));
 }
 
-TEST(perteneceTEST, noPertenece){
+TEST(perteneceExcluyendoUltimoTEST, noPertenece){
     toroide t1 = {
             {false, false, false},
             {false, false, false},
@@ -38,7 +38,7 @@ TEST(perteneceTEST, noPertenece){
     EXPECT_FALSE(perteneceExcluyendoUltimo(t2, ts));
 }
 
-TEST(perteneceTEST, listaVacia){
+TEST(perteneceExcluyendoUltimoTEST, listaVacia){
     toroide t = {
             {true, false, false},
             {false, true, false},
