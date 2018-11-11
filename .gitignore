@@ -1,6 +1,9 @@
 .idea
 cmake-build-debug
 
+# Reportes de covertura
+salida/
+
 # Compilados del projecto
 juegoDeLaVida/juegoDeLaVida
 juegoDeLaVida/juegoDeLaVidaTest
