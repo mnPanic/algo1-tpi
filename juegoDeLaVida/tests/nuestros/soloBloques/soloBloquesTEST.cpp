@@ -89,3 +89,28 @@ TEST(soloBloquesTEST, bloqueEsquinas){
 
     EXPECT_TRUE(soloBloques(t));
 }
+
+
+TEST(soloBloquesTEST, noSoloBloques){
+    toroide t = {
+            {false,  false, false, false, false},
+            {false,  true,  true,  false, true},
+            {false,  true,  true,  false, false},
+            {false,  false, false, false, false}
+
+    };
+
+    EXPECT_FALSE(soloBloques(t));
+}
+
+
+TEST(soloBloquesTEST, piezaTetris){
+    toroide t = {
+            {true,  true,  false},
+            {false, true,  true},
+            {false, false, false},
+
+    };
+
+    EXPECT_FALSE(soloBloques(t));
+}

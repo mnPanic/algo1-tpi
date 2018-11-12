@@ -563,7 +563,56 @@ bool enCrecimiento(toroide t){
 }
 
 /******************************* EJERCICIO soloBloques (OPCIONAL) ***********************/
+bool esBloqueDesdeBordeSuperiorIzquierdo(toroide t, posicion pos) {
+    bool esBloque = true;
+    for (int i = 0; i <= 3 && esBloque; i++) {
+        for (int j = 0; j <= 3 && esBloque; j++) {
+            posicion posTrasladada = trasladar(t, pos, direccion(i, j));
+
+            bool enRangoBloque = (0 < i) && (i < 3) &&
+                                 (0 < j) && (j < 3);
+
+            bool posViva = estaViva(t, posTrasladada);
+
+            esBloque = (enRangoBloque == posViva);
+        }
+    }
+
+    return esBloque;
+}
+
+bool perteneceAUnBloque(toroide t, posicion pos) {
+    bool pertenece = false;
+
+    vector<direccion> direccionesDesdePos = {
+            direccion(-1, -1),  // esquina superior izquierda
+            direccion(-1, -2),  // esquina superior derecha
+            direccion(-2, -1),  // esquina inferior izquierda
+            direccion(-2, -2)   // esquina inferior derecha
+    };
+
+    for (int i = 0; i < direccionesDesdePos.size() && !pertenece; i++) {
+        direccion dir = direccionesDesdePos[i];
+        pertenece = esBloqueDesdeBordeSuperiorIzquierdo(t, trasladar(t, pos, dir));
+    }
+
+    return pertenece;
+}
+
 bool soloBloques(toroide t){
-    bool res;
+    if (estaMuerto(t)) {
+        return false;
+    }
+
+    bool res = true;
+    for (int i = 0; i < rows(t) && res; i++) {
+        for (int j = 0; j < cols(t) && res; j++) {
+            posicion pos(i, j);
+            if (estaViva(t, pos)) {
+                res = perteneceAUnBloque(t, pos);
+            }
+        }
+    }
+
     return res;
 }
