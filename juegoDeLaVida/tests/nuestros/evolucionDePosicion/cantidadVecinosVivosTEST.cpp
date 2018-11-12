@@ -32,7 +32,7 @@ TEST(cantidadVecinosVivosTEST, repetidos){
     };
 
     posicion p(1, 1);
-    EXPECT_EQ(cantidadVecinosVivos(t, p), 2);
+    EXPECT_EQ(cantidadVecinosVivos(t, p), 6);
 }
 
 TEST(cantidadVecinosVivosTEST, 1x1){
@@ -41,5 +41,5 @@ TEST(cantidadVecinosVivosTEST, 1x1){
     };
 
     posicion p(0, 0);
-    EXPECT_EQ(cantidadVecinosVivos(t, p), 0);
+    EXPECT_EQ(cantidadVecinosVivos(t, p), 8);
 }

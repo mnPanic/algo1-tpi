@@ -22,8 +22,7 @@ int cantidadVivas(toroide t);
 
 // evolucionDePosicion
 int contarCantidadVivas (toroide t, vector<posicion> ps);
-bool pertenece (posicion p, vector<posicion> ps);
-vector<posicion> obtenerVecinosUnicos(toroide t, posicion p);
+vector<posicion> obtenerVecinos(toroide t, posicion p);
 int cantidadVecinosVivos(toroide t, posicion p);
 bool debeVivir(toroide t, posicion p);
 

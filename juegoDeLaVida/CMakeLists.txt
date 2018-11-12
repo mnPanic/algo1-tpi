@@ -49,8 +49,7 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/seleccionNatural/seleccionNaturalTEST.cpp
 		tests/nuestros/evolucionDePosicion/cantidadVecinosVivosTEST.cpp
 		tests/nuestros/evolucionDePosicion/contarCantidadVivasTEST.cpp
-		tests/nuestros/evolucionDePosicion/perteneceTEST.cpp
-		tests/nuestros/evolucionDePosicion/obtenerVecinoUnicosTEST.cpp
+		tests/nuestros/evolucionDePosicion/obtenerVecinosTEST.cpp
 		tests/nuestros/vistaTrasladada/vistaTrasladadaTEST.cpp
 		tests/nuestros/soloBloques/soloBloquesTEST.cpp)
 

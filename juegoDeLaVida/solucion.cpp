@@ -180,28 +180,14 @@ int contarCantidadVivas (toroide t, vector<posicion> ps) {
     return cantVivas;
 }
 
-/**
- * Dado una posicion y un vector de posiciones, dice si pertence.
- */
-bool pertenece (posicion p, vector<posicion> ps) {
-    int i = 0;
-
-    while(i < ps.size() && p != ps[i]){
-        i++;
-    }
-
-    return i != ps.size();
-}
-
-vector<posicion> obtenerVecinosUnicos(toroide t, posicion p) {
+vector<posicion> obtenerVecinos(toroide t, posicion p) {
     vector<posicion> vecinos;
-
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
             direccion dirTraslacion(i, j);
             posicion posTrasladada = trasladar(t, p ,dirTraslacion);
 
-            if (!pertenece(posTrasladada, vecinos) && posTrasladada != p){
+            if (dirTraslacion != direccion(0, 0)){
                 vecinos.push_back(posTrasladada);
             }
         }
@@ -210,38 +196,15 @@ vector<posicion> obtenerVecinosUnicos(toroide t, posicion p) {
 }
 
 int cantidadVecinosVivos(toroide t, posicion p) {
-    vector<posicion> vecinosUnicos = obtenerVecinosUnicos(t, p);
+    vector<posicion> vecinos = obtenerVecinos(t, p);
 
-    return contarCantidadVivas(t, vecinosUnicos);
-}
-
-int cantidadVecinosVivosIncorrecta(toroide t, posicion p) {
-    int vecinosVivos = 0;
-
-    for (int i = -1; i <= 1; i++) {
-        for (int j = -1; j <= 1; j++) {
-            direccion dir(i, j);
-            posicion pTrasladada = trasladar(t, p, dir);
-
-            if (estaViva(t, pTrasladada)) {
-                vecinosVivos++;
-            }
-        }
-    }
-
-    if (estaViva(t, p)) {
-        // Ya que al ver todas las traslaciones, la (0, 0) sería
-        // la misma posición, la cual no queremos contar como vecina.
-        vecinosVivos--;
-    }
-
-    return vecinosVivos;
+    return contarCantidadVivas(t, vecinos);
 }
 
 bool debeVivir(toroide t, posicion p) {
     bool vive;
 
-    int vecinosVivos = cantidadVecinosVivosIncorrecta(t, p);
+    int vecinosVivos = cantidadVecinosVivos(t, p);
 
     if (estaViva(t, p)) {
         vive = (2 <= vecinosVivos) && (vecinosVivos <= 3);
