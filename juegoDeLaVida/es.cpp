@@ -72,9 +72,7 @@ bool esFormatoValido(string nombreArchivo) {
         elem ++;
     }
 
-    if (!fin.eof()) {
-        fin >> cantidadVivas;
-    }
+    fin >> cantidadVivas;
 
     valido = valido &&
              cantidadVivas == vivas &&       // Chequeo que la cantidad de vivas sea correcta
