@@ -122,16 +122,8 @@ bool noEsVacio(toroide t) {
 }
 
 bool esMatrizValida(toroide t) {
-    // TODO
-    // bool esValida = true;
-    // for (int i = 0; i < rows(t) && esValida; i++) {
-    //     if (t[i].size() != cols(t)){
-    //         esValida = false;
-    //     }
-    // }
-    // return esValida;
-
     int i = 0;
+
     while (i < rows(t) && t[i].size() == cols(t)) {
         i++;
     }
