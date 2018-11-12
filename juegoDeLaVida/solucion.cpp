@@ -88,6 +88,11 @@ bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts) {
     return i < s;
 }
 
+bool esEvolucion(toroide t1, toroide t2) {
+    int k;
+    return esEvolucion(t1, t2, k);
+}
+
 /**
  * Dice si t2 es evolución de t1 y almacena la evolución en k.
  */
@@ -143,6 +148,7 @@ vector<posicion> posicionesVivas(toroide t){
     for (int i = 0; i < rows(t); i++){
         for (int j = 0; j < cols(t); j++) {
             posicion p(i, j);
+
             if (estaViva(t, p)) {
                 res.push_back(p);
             }
@@ -182,6 +188,7 @@ int contarCantidadVivas (toroide t, vector<posicion> ps) {
 
 vector<posicion> obtenerVecinos(toroide t, posicion p) {
     vector<posicion> vecinos;
+
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
             direccion dirTraslacion(i, j);
@@ -250,8 +257,7 @@ bool esPeriodico(toroide t, int& p) {
 
 /******************************* EJERCICIO primosLejanos ********************************/
 bool primosLejanos(toroide t1, toroide t2) {
-    int evoluciones = 0;
-    return mismaDimension(t1, t2) && esEvolucion(t1,t2,evoluciones);
+    return mismaDimension(t1, t2) && esEvolucion(t1,t2);
 }
 
 /****************************** EJERCICIO seleccionNatural ******************************/
