@@ -98,7 +98,6 @@ bool esEvolucion(toroide t1, toroide t2) {
 /**
  * Dice si t2 es evolución de t1 y almacena la evolución en k.
  */
-// TODO: revisar
 bool esEvolucion (toroide t1, toroide t2, int &k) {
     // Caso borde
     if (estaMuerto(t1) && estaMuerto(t2)) {
