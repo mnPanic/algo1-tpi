@@ -51,7 +51,7 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/evolucionDePosicion/contarCantidadVivasTEST.cpp
 		tests/nuestros/evolucionDePosicion/obtenerVecinosTEST.cpp
 		tests/nuestros/vistaTrasladada/vistaTrasladadaTEST.cpp
-		tests/nuestros/soloBloques/soloBloquesTEST.cpp)
+		tests/nuestros/soloBloques/soloBloquesTEST.cpp tests/nuestros/primosLejanos/primosLejanosTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
