@@ -95,6 +95,40 @@ bool esEvolucion(toroide t1, toroide t2) {
     return esEvolucion(t1, t2, k);
 }
 
+bool pertenece(toroide t, vector<toroide> ts) {
+    int i = 0;
+
+    while(i < ts.size() && ts[i] != t) {
+        i++;
+    }
+
+    return i < ts.size();
+}
+
+/**
+ * Dado t2 fijo, evoluciono t1 hasta que aparece t2, muere o se vuelve periodico
+ */
+bool esEstrictamenteEvolucion(toroide t1, toroide t2, int& k) {
+    vector<toroide> evoluciones;
+    evolucionToroide(t2);
+
+    while (t1 != t2 && !estaMuerto(t2) && !pertenece(t2, evoluciones)) {
+        evoluciones.push_back(t2);
+        evolucionToroide(t2);
+    }
+
+    if (t1 == t2) {
+        k = evoluciones.size() + 1;
+    }
+
+    return t1 == t2;
+}
+
+bool esEstrictamenteEvolucion(toroide t1, toroide t2) {
+    int k;
+    return esEstrictamenteEvolucion(t1, t2, k);
+}
+
 /**
  * Dice si t2 es evolución de t1 y almacena la evolución en k.
  */
