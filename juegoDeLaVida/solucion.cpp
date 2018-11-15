@@ -69,57 +69,38 @@ bool estaMuerto(toroide t) {
     return muerto;
 }
 
-
-bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts) {
+bool pertenece(toroide t, vector<toroide> ts) {
     int i = 0;
-    int s = ts.size() - 1;
-    while (i < s && ts[i] != t) {
+
+    while(i < ts.size() && ts[i] != t) {
         i++;
     }
 
-    return i < s;
-}
-
-bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts) {
-    int i = 1;
-    int s = ts.size();
-    while (i < s && ts[i] != t) {
-        i++;
-    }
-
-    return i < s;
-}
-
-bool esEvolucion(toroide t1, toroide t2) {
-    int k;
-    return esEvolucion(t1, t2, k);
+    return i < ts.size();
 }
 
 /**
- * Dice si t2 es evolución de t1 y almacena la evolución en k.
+ * Dado t2 fijo, evoluciono t1 hasta que aparece t2, muere o se vuelve periodico
  */
-bool esEvolucion (toroide t1, toroide t2, int &k) {
-    // Caso borde
-    if (estaMuerto(t1) && estaMuerto(t2)) {
-        k = 1;
-        return true;
-    }
-
+bool esEstrictamenteEvolucion(toroide t1, toroide t2, int& k) {
     vector<toroide> evoluciones;
-    bool evolucionado = false;
-    evoluciones.push_back(t1);
+    evolucionToroide(t1);
 
-    while (!estaMuerto(t1) && !perteneceExcluyendoUltimo(t1, evoluciones) && !perteneceExcluyendoPrimero(t2, evoluciones)) {
-        evolucionToroide(t1);
+    while (t1 != t2 && !estaMuerto(t1) && !pertenece(t1, evoluciones)) {
         evoluciones.push_back(t1);
+        evolucionToroide(t1);
     }
 
-    if (evoluciones[evoluciones.size() - 1] == t2) {
-        evolucionado = true;
-        k = evoluciones.size() - 1;
+    if (t1 == t2) {
+        k = evoluciones.size() + 1;
     }
 
-    return evolucionado;
+    return t1 == t2;
+}
+
+bool esEstrictamenteEvolucion(toroide t1, toroide t2) {
+    int k;
+    return esEstrictamenteEvolucion(t1, t2, k);
 }
 
 /********************************** EJERCICIO esValido **********************************/
@@ -247,18 +228,19 @@ toroide evolucionMultiple(toroide t, int k){
 }
 
 /******************************** EJERCICIO esPeriodico *********************************/
+bool esPeriodico(toroide t, int& p) {
+    return esEstrictamenteEvolucion(t, t, p);
+}
+
 bool esPeriodico(toroide t) {
     int p;
     return esPeriodico(t, p);
 }
 
-bool esPeriodico(toroide t, int& p) {
-    return esEvolucion(t, t, p);
-}
 
 /******************************* EJERCICIO primosLejanos ********************************/
 bool primosLejanos(toroide t1, toroide t2) {
-    return (t1 == t2) || (mismaDimension(t1, t2) && esEvolucion(t1,t2));
+    return (t1 == t2) || (mismaDimension(t1, t2) && esEstrictamenteEvolucion(t1, t2));
 }
 
 /****************************** EJERCICIO seleccionNatural ******************************/

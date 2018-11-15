@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TEST(perteneceExcluyendoPrimeroTEST, excluido){
+TEST(perteneceTEST, pertenece){
     toroide t1 = {
             {false, false, false},
             {false, false, false},
@@ -18,10 +18,10 @@ TEST(perteneceExcluyendoPrimeroTEST, excluido){
     ts.push_back(t1);
     ts.push_back(t2);
 
-    EXPECT_FALSE(perteneceExcluyendoPrimero(t1, ts));
+    EXPECT_TRUE(pertenece(t1, ts));
 }
 
-TEST(perteneceExcluyendoPrimeroTEST, noPertenece){
+TEST(perteneceTEST, noPertenece){
     toroide t1 = {
             {false, false, false},
             {false, false, false},
@@ -35,31 +35,10 @@ TEST(perteneceExcluyendoPrimeroTEST, noPertenece){
     vector<toroide> ts;
     ts.push_back(t1);
 
-    EXPECT_FALSE(perteneceExcluyendoPrimero(t2, ts));
+    EXPECT_FALSE(pertenece(t2, ts));
 }
 
-TEST(perteneceExcluyendoPrimeroTEST, pertenece){
-    toroide t1 = {
-            {false, false, false},
-            {false, false, false},
-            {false, false, false}
-    };
-    toroide t2 = {
-            {false, false, false},
-            {false, true, false},
-            {false, false, false}
-    };
-    vector<toroide> ts;
-    ts.push_back(t1);
-    ts.push_back(t1);
-    ts.push_back(t1);
-    ts.push_back(t2);
-
-    EXPECT_TRUE(perteneceExcluyendoPrimero(t2, ts));
-}
-
-
-TEST(perteneceExcluyendoPrimeroTEST, listaVacia){
+TEST(perteneceTEST, listaVacia){
     toroide t = {
             {true, false, false},
             {false, true, false},
@@ -68,5 +47,5 @@ TEST(perteneceExcluyendoPrimeroTEST, listaVacia){
     vector<toroide> ts;
 
 
-    EXPECT_FALSE(perteneceExcluyendoUltimo(t, ts));
+    EXPECT_FALSE(pertenece(t, ts));
 }
