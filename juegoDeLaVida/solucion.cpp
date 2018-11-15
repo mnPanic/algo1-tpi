@@ -281,18 +281,19 @@ toroide evolucionMultiple(toroide t, int k){
 }
 
 /******************************** EJERCICIO esPeriodico *********************************/
+bool esPeriodico(toroide t, int& p) {
+    return esEstrictamenteEvolucion(t, t, p);
+}
+
 bool esPeriodico(toroide t) {
     int p;
     return esPeriodico(t, p);
 }
 
-bool esPeriodico(toroide t, int& p) {
-    return esEvolucion(t, t, p);
-}
 
 /******************************* EJERCICIO primosLejanos ********************************/
 bool primosLejanos(toroide t1, toroide t2) {
-    return (t1 == t2) || (mismaDimension(t1, t2) && esEvolucion(t1,t2));
+    return (t1 == t2) || (mismaDimension(t1, t2) && esEstrictamenteEvolucion(t1,t2));
 }
 
 /****************************** EJERCICIO seleccionNatural ******************************/
