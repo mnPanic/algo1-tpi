@@ -69,32 +69,6 @@ bool estaMuerto(toroide t) {
     return muerto;
 }
 
-
-bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts) {
-    int i = 0;
-    int s = ts.size() - 1;
-    while (i < s && ts[i] != t) {
-        i++;
-    }
-
-    return i < s;
-}
-
-bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts) {
-    int i = 1;
-    int s = ts.size();
-    while (i < s && ts[i] != t) {
-        i++;
-    }
-
-    return i < s;
-}
-
-bool esEvolucion(toroide t1, toroide t2) {
-    int k;
-    return esEvolucion(t1, t2, k);
-}
-
 bool pertenece(toroide t, vector<toroide> ts) {
     int i = 0;
 
@@ -127,33 +101,6 @@ bool esEstrictamenteEvolucion(toroide t1, toroide t2, int& k) {
 bool esEstrictamenteEvolucion(toroide t1, toroide t2) {
     int k;
     return esEstrictamenteEvolucion(t1, t2, k);
-}
-
-/**
- * Dice si t2 es evolución de t1 y almacena la evolución en k.
- */
-bool esEvolucion (toroide t1, toroide t2, int &k) {
-    // Caso borde
-    if (estaMuerto(t1) && estaMuerto(t2)) {
-        k = 1;
-        return true;
-    }
-
-    vector<toroide> evoluciones;
-    bool evolucionado = false;
-    evoluciones.push_back(t1);
-
-    while (!estaMuerto(t1) && !perteneceExcluyendoUltimo(t1, evoluciones) && !perteneceExcluyendoPrimero(t2, evoluciones)) {
-        evolucionToroide(t1);
-        evoluciones.push_back(t1);
-    }
-
-    if (evoluciones[evoluciones.size() - 1] == t2) {
-        evolucionado = true;
-        k = evoluciones.size() - 1;
-    }
-
-    return evolucionado;
 }
 
 /********************************** EJERCICIO esValido **********************************/
