@@ -84,11 +84,11 @@ bool pertenece(toroide t, vector<toroide> ts) {
  */
 bool esEstrictamenteEvolucion(toroide t1, toroide t2, int& k) {
     vector<toroide> evoluciones;
-    evolucionToroide(t2);
+    evolucionToroide(t1);
 
-    while (t1 != t2 && !estaMuerto(t2) && !pertenece(t2, evoluciones)) {
-        evoluciones.push_back(t2);
-        evolucionToroide(t2);
+    while (t1 != t2 && !estaMuerto(t1) && !pertenece(t1, evoluciones)) {
+        evoluciones.push_back(t1);
+        evolucionToroide(t1);
     }
 
     if (t1 == t2) {
@@ -240,7 +240,7 @@ bool esPeriodico(toroide t) {
 
 /******************************* EJERCICIO primosLejanos ********************************/
 bool primosLejanos(toroide t1, toroide t2) {
-    return (t1 == t2) || (mismaDimension(t1, t2) && esEstrictamenteEvolucion(t1,t2));
+    return (t1 == t2) || (mismaDimension(t1, t2) && esEstrictamenteEvolucion(t1, t2));
 }
 
 /****************************** EJERCICIO seleccionNatural ******************************/
