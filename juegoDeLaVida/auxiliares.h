@@ -8,9 +8,8 @@ bool mismaDimension (toroide t1, toroide t2);
 posicion trasladar(toroide t, posicion p, direccion dir);
 bool estaViva(toroide t, posicion p);
 bool estaMuerto(toroide t);
-bool esEvolucion (toroide t1, toroide t2, int &k);
-bool perteneceExcluyendoUltimo(toroide t, vector<toroide> ts);
-bool perteneceExcluyendoPrimero(toroide t, vector<toroide> ts);
+bool pertenece(toroide t, vector<toroide> ts);
+bool esEstrictamenteEvolucion (toroide t1, toroide t2, int &k);
 
 // esValido
 bool noEsVacio(toroide t);

@@ -33,9 +33,8 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/seleccionNatural/cantidadDeTicksHastaMorirTEST.cpp
 		tests/nuestros/seleccionNatural/noMuereTEST.cpp
 		tests/nuestros/esPeriodico/esPeriodicoTEST.cpp
-		tests/nuestros/generales/perteneceExcluyendoUltimoTEST.cpp
-		tests/nuestros/generales/esEvolucionTEST.cpp
-		tests/nuestros/generales/perteneceExcluyendoPrimeroTEST.cpp
+		tests/nuestros/generales/perteneceTEST.cpp
+		tests/nuestros/generales/esEstrictamenteEvolucionTEST.cpp
 		tests/nuestros/vistaTrasladada/esTraslacionEnDireccionTEST.cpp
 		tests/nuestros/enCrecimiento/trasladarToroideTEST.cpp
 		tests/nuestros/enCrecimiento/minimaSuperficieQueCubreTEST.cpp
@@ -51,7 +50,8 @@ set(SOURCE_FILES_TEST
 		tests/nuestros/evolucionDePosicion/contarCantidadVivasTEST.cpp
 		tests/nuestros/evolucionDePosicion/obtenerVecinosTEST.cpp
 		tests/nuestros/vistaTrasladada/vistaTrasladadaTEST.cpp
-		tests/nuestros/soloBloques/soloBloquesTEST.cpp tests/nuestros/primosLejanos/primosLejanosTEST.cpp)
+		tests/nuestros/soloBloques/soloBloquesTEST.cpp
+		tests/nuestros/primosLejanos/primosLejanosTEST.cpp)
 
 add_executable(juegoDeLaVidaTest ${SOURCE_FILES_TEST})
 
